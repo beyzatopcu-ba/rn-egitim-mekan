@@ -9,11 +9,17 @@ import ProfileScreen from '../Screens/Profile/ProfileScreen';
 import HomeStackNavigator from './HomeStackNavigation';
 import FavoritesStackNavigation from './FavoritesStackNavigator';
 
+import TabbarOptions from './Styles/TabbarOptions';
+
 const Tabs = createBottomTabNavigator();
 
 const TabNavigation = props => {
     return (
-        <Tabs.Navigator>
+        <Tabs.Navigator 
+            // ilk açıldığında görünen ekranı seçebiliyoruz
+            // initialRouteName="favorites-stack"
+            tabBarOptions={TabbarOptions}
+        >
             {/* Alt 1: stack içinde tab */}
             {/* Hiyerarşiyi değiştirip, stack içinde tab yaptık */}
             {/* <Tabs.Screen 

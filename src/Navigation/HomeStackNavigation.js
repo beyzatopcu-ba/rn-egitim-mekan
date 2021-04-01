@@ -14,12 +14,14 @@ const HomeStack = createStackNavigator();
 const HomeStackNavigation = props => {
 
     return (
-        <HomeStack.Navigator>
+        <HomeStack.Navigator screenOptions={{
+        }}>
             <HomeStack.Screen 
                 name="home-screen"
                 component={HomeScreen}
                 options={{
                     title: 'Anasayfa',
+
                 }}
             />
             <HomeStack.Screen 
