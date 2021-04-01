@@ -7,7 +7,12 @@ import RestaurantsScreen from '../Screens/Restaurants/RestaurantsScreen';
 
 const HomeStack = createStackNavigator();
 
+// Alt 2: tab içinde stack
+// Anasayfa ile restoran ekranı aynı alanı paylaşıyorlar.
+// Bu yüzden kardeş olmalılar.
+// Restoran ekranı, anasayfanın üzerine bindiği için de Stack içinde kardeş olmalılar.
 const HomeStackNavigation = props => {
+
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen 
