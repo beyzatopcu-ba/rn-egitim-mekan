@@ -7,6 +7,7 @@ import ProfileScreen from '../Screens/Profile/ProfileScreen';
 
 // Navigators
 import HomeStackNavigator from './HomeStackNavigation';
+import FavoritesStackNavigation from './FavoritesStackNavigator';
 
 const Tabs = createBottomTabNavigator();
 
@@ -37,8 +38,8 @@ const TabNavigation = props => {
                 }}
             />
             <Tabs.Screen 
-                name="favorites-screen"
-                component={FavoritesScreen}
+                name="favorites-stack"
+                component={FavoritesStackNavigation}
                 options={{
                     title: "Favoriler",
                 }}
