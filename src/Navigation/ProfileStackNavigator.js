@@ -1,30 +1,30 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import FavoritesScreen from '../Screens/Favorites/FavoritesScreen';
+import ProfileScreen from '../Screens/Profile/ProfileScreen';
 import HeaderLeft from '../Components/HeaderLeft';
 import StackScreenOptions from './Commons/StackScreenOptions';
 
-const FavoritesStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
-const FavoritesStackNavigation = () => {
+const ProfileStackNavigation = () => {
     return (
-        <FavoritesStack.Navigator screenOptions={StackScreenOptions}>
-            <FavoritesStack.Screen 
-                name="favorites-screen"
-                component={FavoritesScreen}
+        <ProfileStack.Navigator screenOptions={StackScreenOptions}>
+            <ProfileStack.Screen 
+                name="profile-screen"
+                component={ProfileScreen}
                 options={(params) => {
                     // React Navigation, parametre olarak 'navigation' nesnesini veriyor
                     let navigation = params.navigation;
                     return {
-                        title: 'Favoriler',
+                        title: 'Hesabım',
                         // HeaderLeft'e 'navigation' props'unu ekleyen ufak component yazdık
                         // HigherOrderComponent oldu bu
                         headerLeft: () => <HeaderLeft navigation={navigation} />,
                     }
                 }}
             />
-        </FavoritesStack.Navigator>
+        </ProfileStack.Navigator>
     )
 };
 
-export default FavoritesStackNavigation;
+export default ProfileStackNavigation;

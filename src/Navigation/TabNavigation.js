@@ -1,15 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-// Screens
-import FavoritesScreen from '../Screens/Favorites/FavoritesScreen';
-import ProfileScreen from '../Screens/Profile/ProfileScreen';
-
 // Navigators
 import HomeStackNavigator from './HomeStackNavigation';
 import FavoritesStackNavigation from './FavoritesStackNavigator';
+import ProfileStackNavigation from './ProfileStackNavigator';
 
-import TabbarOptions from './Styles/TabbarOptions';
+import TabbarOptions from './Commons/TabbarOptions';
 
 const Tabs = createBottomTabNavigator();
 
@@ -52,9 +49,9 @@ const TabNavigation = props => {
             />
             <Tabs.Screen 
                 // mecburi (her bir ekranın id'si ve unique olmak zorunda)
-                name="profile-screen"
+                name="profile-stack"
                 // mecburi (ekranımızın componenti)
-                component={ProfileScreen}
+                component={ProfileStackNavigation}
                 // opsiyonel (tab üzerinde görünecek başlık)
                 options={{
                     title: "Hesabım"
