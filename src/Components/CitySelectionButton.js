@@ -5,7 +5,7 @@ import styles from './Styles/CitySelectionButtonStyles';
 
 const CitySelectionButton = props => {
     return (
-        <TouchableOpacity style={styles.touchable}>
+        <TouchableOpacity style={styles.touchable} onPress={props.onPress}>
             <Text style={styles.text}>ŞEHİR SEÇİN</Text>
         </TouchableOpacity>
     );

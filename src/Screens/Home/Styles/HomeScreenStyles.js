@@ -17,5 +17,15 @@ export default StyleSheet.create({
     },
     contentContainerStyle: {
         marginTop: Metrics.width * 0.035,
+    },
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContentContainer: {
+        width: Metrics.width * 0.8,
+        height: Metrics.height * 0.6,
+        borderRadius: Metrics.borderRadius,
+        backgroundColor: 'white'
     }
 });
