@@ -1,5 +1,33 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
+import CitySelectionButton from '../../Components/CitySelectionButton';
+import Title from '../../Components/Title';
+import CategoryItem from './Components/CategoryItem';
+
+import styles from './Styles/HomeScreenStyles';
+
+const dummyCategories = [
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+]
 
 const HomeScreen = props => {
 
@@ -7,13 +35,45 @@ const HomeScreen = props => {
         props.navigation.navigate("restaurants-screen");
     }
 
+    const _renderCategoryItem = ({item}) => {
+        return (
+            <CategoryItem text={item.categoryName}/>
+        )
+    }
+
+    const EmptyComponent = props => {
+        return <Text>Boş</Text>
+    }
+
 
     return (
-        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>HomeScreen'im ben</Text>
-            <TouchableOpacity onPress={_onPress_GoToRestaurants}>
-                <Text>Restoran ekranına git</Text>
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <View style={styles.citySelectionButtonContainer}>
+                {/* CitySelectionButton */}
+                <CitySelectionButton />
+            </View>
+            <View>
+                {/* Title */}
+                <Title text="Kategoriler"/>
+            </View>
+            <View>
+                {/* CategoryList */}
+                <FlatList 
+                    ListEmptyComponent={EmptyComponent}
+                    // Render edilecek itemlerin listesi (array)
+                    data={dummyCategories}
+                    // Her bir itemin nasıl render edileceği (fonksiyon)
+                    renderItem={_renderCategoryItem}
+                    // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
+                    keyExtractor={item => item.categoryId}
+                    // İki sütun olmasını istiyoruz
+                    numColumns={2}
+                    // Her bir sütunun container style'ı
+                    columnWrapperStyle={styles.columnWrapperStyle}
+                    // FlatList'in içindeki her şeyi kapsayan container style'ı
+                    contentContainerStyle={styles.contentContainerStyle}
+                />
+            </View>
         </View>
     )
 }

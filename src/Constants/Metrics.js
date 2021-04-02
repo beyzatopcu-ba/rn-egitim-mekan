@@ -8,4 +8,5 @@ export default {
     width,
     height,
     marginHorizontal: width * 0.05,
+    borderRadius: 8,
 };
