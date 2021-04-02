@@ -1,4 +1,4 @@
-import { Metrics, Fonts } from '../../Constants';
+import { Metrics, Fonts, Colors } from '../../Constants';
 
 export default {
     labelStyle: {
@@ -7,7 +7,7 @@ export default {
         fontFamily: Fonts.Families.semibold,
     },
     style: {
-        backgroundColor: '#DE6F35',
+        backgroundColor: Colors.mainColor,
     },
     tabStyle: {
         justifyContent: 'center',
