@@ -1,6 +1,11 @@
+import Metrics from '../../Constants/Metrics';
+import Fonts from '../../Constants/Fonts';
+
 export default {
     labelStyle: {
-        fontSize: 15,
+        fontSize: Metrics.width * 0.04,
+        fontWeight: '600',
+        fontFamily: Fonts.Families.semibold,
     },
     style: {
         backgroundColor: '#DE6F35',
