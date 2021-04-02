@@ -1,7 +1,6 @@
 
 import HeaderBackImage from '../../Components/HeaderBackImage';
-import Fonts from '../../Constants/Fonts';
-import Metrics from '../../Constants/Metrics';
+import { Metrics, Fonts } from '../../Constants';
 
 export default {
     headerTitleStyle: {

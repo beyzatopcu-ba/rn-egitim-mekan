@@ -1,5 +1,4 @@
-import Metrics from '../../Constants/Metrics';
-import Fonts from '../../Constants/Fonts';
+import { Metrics, Fonts } from '../../Constants';
 
 export default {
     labelStyle: {
