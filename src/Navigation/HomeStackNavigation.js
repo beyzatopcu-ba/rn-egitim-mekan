@@ -6,11 +6,9 @@ import { Image, TouchableOpacity } from 'react-native';
 import HomeScreen from '../Screens/Home/HomeScreen';
 import RestaurantsScreen from '../Screens/Restaurants/RestaurantsScreen';
 
-// Components
-import HeaderLeft from '../Components/HeaderLeft';
-
 // Misc
 import StackScreenOptions from './Commons/StackScreenOptions';
+import getMainStackScreenOptions from './Commons/MainStackScreenOptions';
 
 const HomeStack = createStackNavigator();
 
@@ -30,14 +28,7 @@ const HomeStackNavigation = props => {
                 // HeaderLeft'e 'navigation' nesnesini props olarak gönderebilmek
                 // için, 'options'ı fonksiyon olarak yazdık.
                 options={(params) => {
-                    // React Navigation, parametre olarak 'navigation' nesnesini veriyor
-                    let navigation = params.navigation;
-                    return {
-                        title: 'Anasayfa',
-                        // HeaderLeft'e 'navigation' props'unu ekleyen ufak component yazdık
-                        // HigherOrderComponent oldu bu
-                        headerLeft: () => <HeaderLeft navigation={navigation} />,
-                    }
+                    return getMainStackScreenOptions(params, 'Anasayfa');
                 }}
             />
             <HomeStack.Screen 

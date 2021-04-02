@@ -1,6 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, Image} from 'react-native';
 
+import styles from './Styles/HeaderLeftStyles';
+
 const HeaderLeft = props => {
 
     const _onPress_HeaderLeft = () => {
@@ -8,9 +10,9 @@ const HeaderLeft = props => {
     }
 
     return (
-        <TouchableOpacity style={{}} onPress={_onPress_HeaderLeft}>
+        <TouchableOpacity onPress={_onPress_HeaderLeft}>
             <Image 
-                style={{marginLeft: 20}}
+                style={styles.image}
                 source={require('../Assets/Images/app-logo.png')}/>
         </TouchableOpacity>
     );
