@@ -6,10 +6,151 @@ import Modal from 'react-native-modal';
 import CitySelectionButton from '../../Components/CitySelectionButton';
 import Title from '../../Components/Title';
 import CategoryItem from './Components/CategoryItem';
+import CitySelectionModal from './Components/CitySelectionModal';
 
 import styles from './Styles/HomeScreenStyles';
 
 const dummyCategories = [
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
+    {
+        categoryId: 1,
+        categoryName: 'DeliveryDeliveryDelivery',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'Dine-out',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'Catching-up',
+    },
+    {
+        categoryId: 4,
+        categoryName: 'Nightlife',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'Delivery',
+    },
     {
         categoryId: 1,
         categoryName: 'DeliveryDeliveryDelivery',
@@ -66,11 +207,11 @@ const HomeScreen = props => {
                     {/* CitySelectionButton */}
                     <CitySelectionButton onPress={_onPress_CitySelectionModal}/>
                 </View>
-                <View>
+                <View style={styles.titleContainer}>
                     {/* Title */}
                     <Title text="Kategoriler" />
                 </View>
-                <View>
+                <View style={styles.flatListContainer}>
                     {/* CategoryList */}
                     <FlatList
                         ListEmptyComponent={EmptyComponent}
@@ -79,15 +220,17 @@ const HomeScreen = props => {
                         // Her bir itemin nasıl render edileceği (fonksiyon)
                         renderItem={_renderCategoryItem}
                         // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
-                        keyExtractor={(item, index) => item.categoryId}
+                        keyExtractor={(item, index) => index}
                         // İki sütun olmasını istiyoruz
                         numColumns={2}
+                        style={styles.flatList}
                         // Her bir sütunun container style'ı
                         columnWrapperStyle={styles.columnWrapperStyle}
                         // FlatList'in içindeki her şeyi kapsayan container style'ı
                         contentContainerStyle={styles.contentContainerStyle}
                     />
                 </View>
+                
             </View>
             <Modal
                 isVisible={isModalVisible}
@@ -109,9 +252,7 @@ const HomeScreen = props => {
                 // arkaplan opaklık
                 backdropOpacity={0.8}
             >
-                <View style={styles.modalContentContainer}>
-
-                </View>
+                <CitySelectionModal />
             </Modal>
         </>
     )

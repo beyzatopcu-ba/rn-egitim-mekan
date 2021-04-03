@@ -8,24 +8,27 @@ export default StyleSheet.create({
         backgroundColor: 'white',
     },
     citySelectionButtonContainer: {
-        marginVertical: Metrics.width * 0.05,
+        paddingVertical: Metrics.width * 0.05,
+    },
+    titleContainer: {
+
+    },
+    flatListContainer: {
+        flexGrow: 1,
+        paddingTop: Metrics.width * 0.05,
+    },
+    flatList: {
+        flex: 1,
     },
     columnWrapperStyle: {
         // backgroundColor: 'yellow',
         justifyContent: 'space-between',
-        marginVertical: Metrics.width * 0.015,
+        paddingBottom: Metrics.width * 0.03,
     },
     contentContainerStyle: {
-        marginTop: Metrics.width * 0.035,
     },
     modal: {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    modalContentContainer: {
-        width: Metrics.width * 0.8,
-        height: Metrics.height * 0.6,
-        borderRadius: Metrics.borderRadius,
-        backgroundColor: 'white'
-    }
 });
