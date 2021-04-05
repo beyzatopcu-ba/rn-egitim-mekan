@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import tryCatch from './TryCatch/trycatch';
 import setTimeoutFunction from './SetTimeout/setTimeoutFunction';
 import promiseFunction from './Promise/Promises';
+import {asyncAwaitFunction, exampleTwo} from './AsyncAwait/AsyncAwait';
 
 const ProfileScreen = props => {
     /*
@@ -19,7 +20,14 @@ const ProfileScreen = props => {
     }
     */
 
+    /*
     promiseFunction();
+    */
+
+    /*
+    asyncAwaitFunction();
+    */
+   exampleTwo();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
