@@ -4,6 +4,7 @@ import tryCatch from './TryCatch/trycatch';
 import setTimeoutFunction from './SetTimeout/setTimeoutFunction';
 import promiseFunction from './Promise/Promises';
 import {asyncAwaitFunction, exampleTwo} from './AsyncAwait/AsyncAwait';
+import apiRequestsFunction from './APIRequests/api';
 
 const ProfileScreen = props => {
     /*
@@ -27,7 +28,11 @@ const ProfileScreen = props => {
     /*
     asyncAwaitFunction();
     */
+   /*
    exampleTwo();
+   */
+
+   apiRequestsFunction();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
