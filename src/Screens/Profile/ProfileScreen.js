@@ -1,49 +1,41 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import tryCatch from './TryCatch/trycatch';
-import setTimeoutFunction from './SetTimeout/setTimeoutFunction';
-import promiseFunction from './Promise/Promises';
-import { asyncAwaitFunction, exampleTwo } from './AsyncAwait/AsyncAwait';
-import { requestWithAxios, requestWithFetch } from './APIRequests/api';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+
+import AxiosBase from '../../API/AxiosConfig';
 
 const ProfileScreen = props => {
-    /*
-    let returnedValue = tryCatch();
-    console.log(returnedValue);
-    */
-   /*
-    setTimeoutFunction();
 
-    const onPress = () => {
-        setTimeout(() => {
-            alert('Selam')
-        }, 3000);
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        // componentDidMount
+        // yani Component ilk render'ını tamamladıktan sonra çalışacak kodlar
+        // bunu sağlamak için, dependencyArray'e [] verdik.
+
+        AxiosBase.get('users')
+            .then(response => {
+                const users = response.data.data;
+                setUserList(users);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+    }, []);
+
+    const _renderUserItem = ({item: user}) => {
+        return (
+            <Text>{user.firstName + " " + user.lastName}</Text>
+        )
     }
-    */
-
-    /*
-    promiseFunction();
-    */
-
-    /*
-    asyncAwaitFunction();
-    */
-   /*
-   exampleTwo();
-   */
-
-   /*
-   requestWithFetch();
-   */
-
-   requestWithAxios();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>ProfileScreen</Text>
-            <TouchableOpacity>
-                <Text>Bekletip alert göster</Text>
-            </TouchableOpacity>
+            <FlatList 
+                data={userList}
+                renderItem={_renderUserItem}
+                keyExtractor={item => item.id}
+            />
         </View>
     )
 }
