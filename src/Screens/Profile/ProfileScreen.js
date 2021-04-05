@@ -6,6 +6,7 @@ import AxiosBase from '../../API/AxiosConfig';
 const ProfileScreen = props => {
 
     const [userList, setUserList] = useState([]);
+    const [randomUser, setRandomUser] = useState(null);
 
     useEffect(async () => {
         // componentDidMount
@@ -35,6 +36,20 @@ const ProfileScreen = props => {
         )
     }
 
+    const _onPress_RandomPerson = () => {
+        const randomNumber = Math.floor(Math.random() * (25 - 1) + 1);
+
+
+        AxiosBase.get('users/'+randomNumber)
+            .then(response => {
+                const user = response.data;
+                setRandomUser(user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <FlatList 
@@ -42,6 +57,10 @@ const ProfileScreen = props => {
                 renderItem={_renderUserItem}
                 keyExtractor={item => item.id}
             />
+            <TouchableOpacity onPress={_onPress_RandomPerson}>
+                <Text>Rasgele Kişi getir</Text>
+            </TouchableOpacity>
+            <Text>{randomUser ? randomUser.firstName + " " + randomUser.lastName : null}</Text>
         </View>
     )
 }
