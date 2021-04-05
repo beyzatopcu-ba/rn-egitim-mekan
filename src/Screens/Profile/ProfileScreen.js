@@ -7,11 +7,12 @@ const ProfileScreen = props => {
 
     const [userList, setUserList] = useState([]);
 
-    useEffect(() => {
+    useEffect(async () => {
         // componentDidMount
         // yani Component ilk render'ını tamamladıktan sonra çalışacak kodlar
         // bunu sağlamak için, dependencyArray'e [] verdik.
 
+        /*
         AxiosBase.get('users')
             .then(response => {
                 const users = response.data.data;
@@ -20,6 +21,11 @@ const ProfileScreen = props => {
             .catch(error => {
                 console.log(error);
             })
+            */
+        let response = await AxiosBase.get('users');
+        setUserList(response.data.data);
+
+        
 
     }, []);
 
