@@ -30,6 +30,8 @@ const ProfileScreen = props => {
 
     }, []);
 
+    
+
     const _renderUserItem = ({item: user}) => {
         return (
             <Text>{user.firstName + " " + user.lastName}</Text>
@@ -50,6 +52,27 @@ const ProfileScreen = props => {
             })
     }
 
+    const _onPress_RandomPerson_Wrong = () => {
+
+        fetch('https://rem-rest-api.herokuapp.com/api/users/100')
+            .then(response => {
+                console.log('response >>> ', response)
+            })
+            .catch(error => {
+                console.log('error >>> ', error);
+            });
+
+            /*
+        AxiosBase.get('users/100')
+            .then(response => {
+                console.log('response >>> ', response)
+            })
+            .catch(error => {
+                console.log('error >>> ', error);
+            })
+            */
+    }
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <FlatList 
@@ -57,7 +80,7 @@ const ProfileScreen = props => {
                 renderItem={_renderUserItem}
                 keyExtractor={item => item.id}
             />
-            <TouchableOpacity onPress={_onPress_RandomPerson}>
+            <TouchableOpacity onPress={_onPress_RandomPerson_Wrong}>
                 <Text>Rasgele Kişi getir</Text>
             </TouchableOpacity>
             <Text>{randomUser ? randomUser.firstName + " " + randomUser.lastName : null}</Text>
