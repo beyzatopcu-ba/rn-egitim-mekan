@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import tryCatch from './TryCatch/trycatch';
 import setTimeoutFunction from './SetTimeout/setTimeoutFunction';
 import promiseFunction from './Promise/Promises';
-import {asyncAwaitFunction, exampleTwo} from './AsyncAwait/AsyncAwait';
-import apiRequestsFunction from './APIRequests/api';
+import { asyncAwaitFunction, exampleTwo } from './AsyncAwait/AsyncAwait';
+import { requestWithAxios, requestWithFetch } from './APIRequests/api';
 
 const ProfileScreen = props => {
     /*
@@ -32,7 +32,11 @@ const ProfileScreen = props => {
    exampleTwo();
    */
 
-   apiRequestsFunction();
+   /*
+   requestWithFetch();
+   */
+
+   requestWithAxios();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

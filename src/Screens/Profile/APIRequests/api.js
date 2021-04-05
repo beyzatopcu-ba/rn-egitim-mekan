@@ -1,4 +1,6 @@
-export default async () => {
+import AxiosBase from '../../../API/AxiosConfig';
+
+export const requestWithFetch =  async () => {
     console.log('>>>>>>>> API ISTEĞI')
     fetch('https://rem-rest-api.herokuapp.com/api/users')
         .then(response => {
@@ -13,4 +15,15 @@ export default async () => {
         })
 
     let users = await fetch('https://rem-rest-api.herokuapp.com/api/users');
+}
+
+export const requestWithAxios = () => {
+    AxiosBase.get('users')
+        .then(response => {
+            console.log('SAF RESPONSE', response);
+            console.log('DATA', response.data)
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
