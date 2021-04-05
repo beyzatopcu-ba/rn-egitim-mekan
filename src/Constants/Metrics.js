@@ -9,4 +9,5 @@ export default {
     height,
     marginHorizontal: width * 0.05,
     borderRadius: 8,
+    textMargin: width * 0.03,
 };
