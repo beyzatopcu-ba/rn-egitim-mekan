@@ -5,6 +5,9 @@ platform :ios, '10.0'
 
 target 'Mekan' do
   config = use_native_modules!
+  
+  # add pods for desired Firebase products
+  # https://firebase.google.com/docs/ios/setup#available-pods
 
   use_react_native!(
     :path => config[:reactNativePath],

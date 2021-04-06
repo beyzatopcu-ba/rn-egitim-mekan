@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "751858818088",
+    "project_id": "mekan-3592a",
+    "storage_bucket": "mekan-3592a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751858818088:android:cc23eace6141d159e1691d",
+        "android_client_info": {
+          "package_name": "com.mekan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751858818088-rqb6ro0rvjv2n9p0703m7hnide49jp3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOGIc3QSeYTujkBVZ1CsywV0NXLCqctXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751858818088-rqb6ro0rvjv2n9p0703m7hnide49jp3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

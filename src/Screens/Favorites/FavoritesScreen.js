@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import AxiosBase from '../../API/AxiosConfig';
 
 import styles from './Styles/FavoritesScreenStyles';
 
@@ -43,6 +44,29 @@ const notes = [
 
 const FavoritesScreen = props => {
 
+    const [noteList, setNoteList] = useState([]);
+
+    useEffect(async () => {
+        for (let i = 0; i < notes.length; i++) {
+            await AxiosBase.post('notes', notes[i]);
+            console.log('posted', notes[i]);
+        }
+
+        console.log('posted all notes');
+
+        // Bu noktada notlar aşağıdaki URL'den çekilip işlem yapılabilir
+        // "https://rem-rest-api.herokuapp.com/api/notes"
+        AxiosBase.get('notes')
+            .then(response => {
+                let data = response.data;
+                let notes = data.data;
+                setNoteList(notes);
+            })
+            .catch();
+
+
+    }, []);
+
     const _renderNoteItem = ({ item }) => {
         return (
             <View style={styles.getNoteContainerStyles(item.color)}>
@@ -66,7 +90,7 @@ const FavoritesScreen = props => {
         <View style={styles.container}>
             <FlatList 
                 style={{flex:1}}
-                data={notes}
+                data={noteList}
                 renderItem={_renderNoteItem}
                 keyExtractor={item => item.id}
             />

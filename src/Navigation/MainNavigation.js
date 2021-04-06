@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 // Navigators
 import TabNavigation from './TabNavigation';
 import MainStackNavigation from './MainStackNavigation';
+import AuthNavigation from './AuthNavigation';
+
+const isLoggedIn = false;
 
 const MainNavigation = props => {
     return (
@@ -11,7 +14,12 @@ const MainNavigation = props => {
             {/* Alt 1 : stack içinde tab */}
             {/* <MainStackNavigation /> */}
             {/* Alt 2: tab içinde stack */}
-            <TabNavigation />
+            {
+                isLoggedIn ?
+                <TabNavigation />
+                :
+                <AuthNavigation />
+            }
         </NavigationContainer>
     )
 }
