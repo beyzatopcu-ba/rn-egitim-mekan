@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AuthScreenUI from './AuthScreenUI';
 import { Alert } from 'react-native';
 
+import {signIn, signUp} from "../../API/Firebase";
+
 const AuthScreen = props => {
 
     const [isLogin, setIsLogin] = useState(true);
@@ -10,11 +12,26 @@ const AuthScreen = props => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const onPress_SignUp = () => {
-        
+        console.log('signup function:', signUp)
+       signUp(email, password)
+            .then(response => {
+                alert('signed up')
+                console.log(response);
+            })
+            .catch(error => {
+                alert(error);
+            })
     }
 
     const onPress_SignIn = () => {
-        
+        signIn(email, password)
+            .then(response => {
+                alert('signed in')
+                console.log(response);
+            })
+            .catch(error => {
+                alert(error)
+            })
     }
 
     return (
