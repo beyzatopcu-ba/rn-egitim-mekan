@@ -26,3 +26,29 @@ const App = () => {
 }
 
 export default App;
+
+
+
+
+
+/*
+// Array destructuring
+
+const arr = ["elma", 5, false];
+const [var1, var2] = arr;
+
+const var1 = arr[0];
+const var2 = arr[1];
+
+// Object destructuring
+const obj = {
+  name: "abc",
+  age: 5,
+  date: "",
+  isLogin: true,
+};
+
+let { age, isLogin } = obj;
+let age = obj.age;
+let isLogin = obj.isLogin;
+*/
