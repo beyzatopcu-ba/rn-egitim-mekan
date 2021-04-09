@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { View, FlatList, Text } from 'react-native';
 import Modal from 'react-native-modal';
@@ -7,6 +7,8 @@ import CitySelectionButton from '../../Components/CitySelectionButton';
 import Title from '../../Components/Title';
 import CategoryItem from './Components/CategoryItem';
 import CitySelectionModal from './Components/CitySelectionModal';
+
+import getCategories from '../../API/Categories/ApiRequests';
 
 import styles from './Styles/HomeScreenStyles';
 
@@ -176,6 +178,18 @@ const dummyCategories = [
 const HomeScreen = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        // Kategorileri iste
+        getCategories()
+            .then(categoryList => {
+                setCategories(categoryList);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, []);
 
     const _onPress_GoToRestaurants = () => {
         props.navigation.navigate("restaurants-screen");
@@ -191,13 +205,15 @@ const HomeScreen = props => {
 
     const _renderCategoryItem = ({item}) => {
         return (
-            <CategoryItem text={item.categoryName}/>
+            <CategoryItem text={item.name}/>
         )
     }
 
     const EmptyComponent = props => {
         return <Text>Boş</Text>
     }
+
+
 
 
     return (
@@ -216,11 +232,11 @@ const HomeScreen = props => {
                     <FlatList
                         ListEmptyComponent={EmptyComponent}
                         // Render edilecek itemlerin listesi (array)
-                        data={dummyCategories}
+                        data={categories}
                         // Her bir itemin nasıl render edileceği (fonksiyon)
                         renderItem={_renderCategoryItem}
                         // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
-                        keyExtractor={(item, index) => index}
+                        keyExtractor={item => item.id}
                         // İki sütun olmasını istiyoruz
                         numColumns={2}
                         style={styles.flatList}
