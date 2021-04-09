@@ -28,14 +28,6 @@ const AuthScreen = props => {
             <KeyboardAvoidingView style={styles.keyboardAvoiding} behavior={'padding'} keyboardVerticalOffset={0}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex:1}}>
                 <View style={styles.container}>
-                    {
-                        props.loading ?
-                            <View style={styles.loadingOverlay}>
-                                <ActivityIndicator color="white" size="large" />
-                            </View>
-                            :
-                            null
-                    }
                     <View style={styles.appLogoContainer}>
                         <Image source={Images.appLogoLarge} style={styles.image} />
                     </View>

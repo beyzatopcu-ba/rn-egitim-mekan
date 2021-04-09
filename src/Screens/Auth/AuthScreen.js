@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import AuthScreenUI from './AuthScreenUI';
 import { Alert } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {signIn, signUp} from "../../API/Firebase";
-import { setUserAC } from '../../Redux/UserRedux';
+import { lastUserEmailSelector, setUserAC } from '../../Redux/UserRedux';
+import { setIsLoadingAC } from '../../Redux/LoadingRedux';
 
 const AuthScreen = props => {
 
-    const [isLogin, setIsLogin] = useState(true);
-    const [email, setEmail] = useState('');
+    const lastUserEmail = useSelector(lastUserEmailSelector);
+
+    const [email, setEmail] = useState(lastUserEmail);
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -26,6 +28,7 @@ const AuthScreen = props => {
     }
 
     const onPress_SignIn = () => {
+        dispatch(setIsLoadingAC(true));
         signIn(email, password)
             .then(response => {
                 // response.user'ı redux store at
@@ -34,6 +37,9 @@ const AuthScreen = props => {
             })
             .catch(error => {
                 alert(error)
+            })
+            .finally(() => {
+                dispatch(setIsLoadingAC(false));
             })
     }
 

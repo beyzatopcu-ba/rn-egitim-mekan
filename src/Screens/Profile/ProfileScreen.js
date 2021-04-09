@@ -10,6 +10,7 @@ import BorderedBox from '../../Components/BorderedBox'
 
 import { Colors } from '../../Constants';
 import styles from './Styles/ProfileScreenStyles';
+import { setIsLoadingAC } from '../../Redux/LoadingRedux';
 
 const ProfileScreen = props => {
 
@@ -17,11 +18,15 @@ const ProfileScreen = props => {
     const dispatch = useDispatch();
 
     const _onPress_SignOut = () => {
+        dispatch(setIsLoadingAC(true));
         signOut()
             .then(response => {
                 dispatch(setUserAC(null));
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .finally(() => {
+                dispatch(setIsLoadingAC(false));
+            })
     }
 
     return (
