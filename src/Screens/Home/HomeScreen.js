@@ -254,19 +254,9 @@ const HomeScreen = props => {
                 onBackdropPress={_onPress_ModalBackdrop}
                 style={styles.modal}
                 // açılış animasyonu
-                animationIn="bounceIn"
+                animationIn="fadeIn"
                 // kapanış animasyonu
-                animationOut="bounceOut"
-                // açılış animasyon süresi
-                animationInTiming={1000}
-                // kapanış animasyon süresi
-                animationOutTiming={3000}
-                // açılış arkaplan kararma süresü
-                backdropTransitionInTiming={3000}
-                // arkaplan rengi
-                backdropColor={'pink'}
-                // arkaplan opaklık
-                backdropOpacity={0.8}
+                animationOut="fadeOut"
             >
                 <CitySelectionModal />
             </Modal>
