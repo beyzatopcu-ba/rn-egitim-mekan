@@ -7,11 +7,16 @@
  */
 
 import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+
 import MainNavigation from './src/Navigation/MainNavigation';
+import { store } from './src/Redux/ReduxManager';
 
 const App = () => {
   return (
-    <MainNavigation />
+    <Provider store={store}>
+      <MainNavigation />
+    </Provider>
   )
 }
 

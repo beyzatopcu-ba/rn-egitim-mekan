@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import AuthScreenUI from './AuthScreenUI';
 import { Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import {signIn, signUp} from "../../API/Firebase";
+import { setUserAC } from '../../Redux/UserRedux';
 
 const AuthScreen = props => {
 
@@ -11,12 +13,12 @@ const AuthScreen = props => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
+    const dispatch = useDispatch();
+
     const onPress_SignUp = () => {
         console.log('signup function:', signUp)
        signUp(email, password)
             .then(response => {
-                alert('signed up')
-                console.log(response);
             })
             .catch(error => {
                 alert(error);
@@ -26,8 +28,9 @@ const AuthScreen = props => {
     const onPress_SignIn = () => {
         signIn(email, password)
             .then(response => {
-                alert('signed in')
-                console.log(response);
+                // response.user'ı redux store at
+                const setUserActionObj = setUserAC(response.user);
+                dispatch(setUserActionObj);
             })
             .catch(error => {
                 alert(error)
