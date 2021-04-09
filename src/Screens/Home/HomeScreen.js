@@ -179,6 +179,10 @@ const HomeScreen = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [selectedCity, setSelectedCity] = useState({
+        id: 59,
+        name: "İstanbul",
+    })
 
     useEffect(() => {
         // Kategorileri iste
@@ -203,9 +207,24 @@ const HomeScreen = props => {
         setIsModalVisible(false);
     }
 
+    const _onPress_CategoryItem = categoryItem => {
+        console.log(categoryItem);
+        // ******************
+        // React Navigation'da başka bir ekrana navigate ederken
+        // Bu şekilde navigasyon parametreleri gönderebiliyoruz
+        props.navigation.navigate("restaurants-screen", {
+            city: selectedCity,
+            category: categoryItem,
+        });
+        // ******************
+    }
+
     const _renderCategoryItem = ({item}) => {
         return (
-            <CategoryItem text={item.name}/>
+            <CategoryItem
+                onPress={() => _onPress_CategoryItem(item)}
+                text={item.name}
+                disabled={selectedCity === null} />
         )
     }
 
@@ -221,7 +240,7 @@ const HomeScreen = props => {
             <View style={styles.container}>
                 <View style={styles.citySelectionButtonContainer}>
                     {/* CitySelectionButton */}
-                    <CitySelectionButton onPress={_onPress_CitySelectionModal}/>
+                    <CitySelectionButton cityName={selectedCity?.name} onPress={_onPress_CitySelectionModal}/>
                 </View>
                 <View style={styles.titleContainer}>
                     {/* Title */}

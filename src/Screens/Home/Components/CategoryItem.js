@@ -5,8 +5,11 @@ import styles from '../Styles/CategoryItemStyles';
 
 const CategoryItem = props => {
     return (
-        <TouchableOpacity style={styles.container}>
-            <Text 
+        <TouchableOpacity
+            onPress={props.onPress}
+            style={styles.container}
+            disabled={props.disabled}>
+            <Text
             numberOfLines={1}
             style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
