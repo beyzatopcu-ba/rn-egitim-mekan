@@ -8,14 +8,19 @@
 
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import MainNavigation from './src/Navigation/MainNavigation';
-import { store } from './src/Redux/ReduxManager';
+import configureStore from './src/Redux/ReduxManager';
+
+const { store, persistor } = configureStore();
 
 const App = () => {
   return (
     <Provider store={store}>
-      <MainNavigation />
+      <PersistGate loading={null} persistor={persistor}>
+        <MainNavigation />
+      </PersistGate>
     </Provider>
   )
 }
