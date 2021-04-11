@@ -4,16 +4,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { userReducer } from './UserRedux';
 import { loadingReducer } from './LoadingRedux';
+import { noteReducer } from './NoteRedux';
 
 const rootReducer = combineReducers({
     userState: userReducer,
     loading: loadingReducer,
+    notes: noteReducer,
 });
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['userState'],
+    whitelist: ['userState', 'notes'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
