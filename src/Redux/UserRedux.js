@@ -33,7 +33,7 @@ export const signInRequest = (email, password) => {
                 const user = response.user;
                 dispatch(setUserAC(user));
             })
-            .catch(error => console.log(error))
+            .catch(error => alert(error))
             .finally(() => {
                 // isLoading'i false'a çek
                 dispatch(setIsLoadingAC(false));
@@ -41,8 +41,22 @@ export const signInRequest = (email, password) => {
     }
 }
 
-export const signUp = () => {
-
+export const signUpRequest = (email, password) => {
+    return dispatch => {
+        // isLoading'i true'ya çek
+        dispatch(setIsLoadingAC(true));
+        // signIn isteği gönder ve gelen user'ı store'a kaydet
+        signUp(email, password)
+            .then(response => {
+                const user = response.user;
+                dispatch(setUserAC(user));
+            })
+            .catch(error => alert(error))
+            .finally(() => {
+                // isLoading'i false'a çek
+                dispatch(setIsLoadingAC(false));
+            });
+    }
 }
 
 export const signOutRequest = () => {
