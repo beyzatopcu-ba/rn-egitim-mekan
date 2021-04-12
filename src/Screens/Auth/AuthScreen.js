@@ -18,13 +18,17 @@ const AuthScreen = props => {
     const dispatch = useDispatch();
 
     const onPress_SignUp = () => {
-        console.log('signup function:', signUp)
-       signUp(email, password)
+        dispatch(setIsLoadingAC(true));
+        signUp(email, password)
             .then(response => {
+                const setUserActionObj = setUserAC(response.user);
+                dispatch(setUserActionObj);
             })
             .catch(error => {
                 alert(error);
             })
+
+        dispatch(setIsLoadingAC(false));
     }
 
     const onPress_SignIn = () => {
