@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {signIn, signUp} from "../../API/Firebase";
-import { lastUserEmailSelector, setUserAC } from '../../Redux/UserRedux';
+import { lastUserEmailSelector, setUserAC, signInRequest } from '../../Redux/UserRedux';
 import { setIsLoadingAC } from '../../Redux/LoadingRedux';
 
 const AuthScreen = props => {
@@ -27,24 +27,20 @@ const AuthScreen = props => {
             .catch(error => {
                 alert(error);
             })
-
-        dispatch(setIsLoadingAC(false));
-    }
-
-    const onPress_SignIn = () => {
-        dispatch(setIsLoadingAC(true));
-        signIn(email, password)
-            .then(response => {
-                // response.user'ı redux store at
-                const setUserActionObj = setUserAC(response.user);
-                dispatch(setUserActionObj);
-            })
-            .catch(error => {
-                alert(error)
-            })
             .finally(() => {
                 dispatch(setIsLoadingAC(false));
             })
+    }
+
+    const onPress_SignIn = () => {
+        console.log('onPress_SignIn')
+        // ***************************************** //
+        ////// AŞAĞIYA dispatch YAZMAYI UNUTMUŞUM //////
+        // ***************************************** //
+        dispatch(signInRequest(email, password));
+        // ***************************************** //
+        ////// YUKARIYA dispatch YAZMAYI UNUTMUŞUM //////
+        // ***************************************** //
     }
 
     return (
