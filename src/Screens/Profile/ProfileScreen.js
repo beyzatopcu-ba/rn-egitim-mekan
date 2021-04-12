@@ -9,7 +9,11 @@ import BorderedBox from '../../Components/BorderedBox'
 import { Colors } from '../../Constants';
 import styles from './Styles/ProfileScreenStyles';
 
+import startGeneratorFunctionsLesson from './GeneratorFunctions/GeneratorFunctions';
+
 const ProfileScreen = props => {
+
+    startGeneratorFunctionsLesson();
 
     const user = useSelector(userSelector);
     const dispatch = useDispatch();
