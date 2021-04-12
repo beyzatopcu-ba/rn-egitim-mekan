@@ -1,4 +1,4 @@
-import { signIn } from "../API/Firebase";
+import { signIn, signOut } from "../API/Firebase";
 import { setIsLoadingAC } from "./LoadingRedux";
 
 // Initial State
@@ -24,22 +24,18 @@ export const setUserAC = (user) => {
 
 // Thunks
 export const signInRequest = (email, password) => {
-    console.log('signInRequest')
     return dispatch => {
-        console.log('dispatching isLoading true');
         // isLoading'i true'ya çek
         dispatch(setIsLoadingAC(true));
         // signIn isteği gönder ve gelen user'ı store'a kaydet
         signIn(email, password)
             .then(response => {
-                console.log('dispatching user');
                 const user = response.user;
                 dispatch(setUserAC(user));
             })
             .catch(error => console.log(error))
             .finally(() => {
                 // isLoading'i false'a çek
-                console.log('dispatching isLoading false');
                 dispatch(setIsLoadingAC(false));
             });
     }
@@ -49,8 +45,23 @@ export const signUp = () => {
 
 }
 
-export const signOut = () => {
+export const signOutRequest = () => {
+    return dispatch => {
+        // isLoading'i true'ya çek
+        // signOut api isteğini gönder
+        // then'de (olumlu sonuçlanırsa) user'ı null'a çek
+        // finally'de (her şey bittikten sonra) isLoading'i false'a çek
 
+        dispatch(setIsLoadingAC(true));
+        signOut()
+            .then(response => {
+                dispatch(setUserAC(null));
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                dispatch(setIsLoadingAC(false));
+            })
+    }
 }
 
 // Reducer

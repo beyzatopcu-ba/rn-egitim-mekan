@@ -2,15 +2,12 @@ import React from 'react';
 import { View, Text, TouchableOpacity} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {setUserAC, userSelector} from '../../Redux/UserRedux';
-
-import {signOut} from '../../API/Firebase';
+import {signOutRequest, userSelector} from '../../Redux/UserRedux';
 
 import BorderedBox from '../../Components/BorderedBox'
 
 import { Colors } from '../../Constants';
 import styles from './Styles/ProfileScreenStyles';
-import { setIsLoadingAC } from '../../Redux/LoadingRedux';
 
 const ProfileScreen = props => {
 
@@ -18,15 +15,7 @@ const ProfileScreen = props => {
     const dispatch = useDispatch();
 
     const _onPress_SignOut = () => {
-        dispatch(setIsLoadingAC(true));
-        signOut()
-            .then(response => {
-                dispatch(setUserAC(null));
-            })
-            .catch(error => console.log(error))
-            .finally(() => {
-                dispatch(setIsLoadingAC(false));
-            })
+        dispatch(signOutRequest());
     }
 
     return (
