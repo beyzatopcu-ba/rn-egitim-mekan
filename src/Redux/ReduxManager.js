@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
+import rootSaga from './Sagas/RootSaga';
 import { userReducer } from './UserRedux';
 import { loadingReducer } from './LoadingRedux';
 import { noteReducer } from './NoteRedux';
@@ -19,12 +20,14 @@ const persistConfig = {
     whitelist: ['userState', 'notes'],
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-// thunk middleware'ini oluşturup aşağıda createStore'a verelim
-const thunkMiddleware = applyMiddleware(thunk);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const sagaMiddleware = createSagaMiddleware();
 
 export default () => {
-    let store = createStore(persistedReducer, thunkMiddleware)
+    let store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
     let persistor = persistStore(store)
+
+    sagaMiddleware.run(rootSaga);
+
     return { store, persistor }
 }

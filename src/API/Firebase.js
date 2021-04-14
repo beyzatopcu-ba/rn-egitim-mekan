@@ -14,3 +14,15 @@ export const signIn = async (email, password) => {
 export const signOut = async () => {
     return await auth.signOut();
 }
+
+export const updateUser = async (displayName) => {
+    let user = auth.currentUser;
+
+    return await user.updateProfile({
+        displayName,
+    });
+}
+
+export const getCurrentUser = () => {
+    return auth.currentUser;
+}

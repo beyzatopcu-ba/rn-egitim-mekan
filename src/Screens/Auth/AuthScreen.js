@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {signIn, signUp} from "../../API/Firebase";
-import { lastUserEmailSelector, signUpRequest, signInRequest } from '../../Redux/UserRedux';
+import { lastUserEmailSelector, signUpRequest } from '../../Redux/UserRedux';
 import { setIsLoadingAC } from '../../Redux/LoadingRedux';
 
 const AuthScreen = props => {
@@ -19,7 +19,7 @@ const AuthScreen = props => {
 
     const onPress_SignUp = () => {
         if (password === passwordConfirm) {
-            dispatch(signUpRequest(email, password));
+            dispatch(signUpRequest(email, password, 'Kullanıcı Adı'));
         }
         else {
             alert('Şifreler eşleşmiyor');

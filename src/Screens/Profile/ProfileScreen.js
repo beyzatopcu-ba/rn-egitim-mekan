@@ -9,11 +9,7 @@ import BorderedBox from '../../Components/BorderedBox'
 import { Colors } from '../../Constants';
 import styles from './Styles/ProfileScreenStyles';
 
-import startGeneratorFunctionsLesson from './GeneratorFunctions/GeneratorFunctions';
-
 const ProfileScreen = props => {
-
-    startGeneratorFunctionsLesson();
 
     const user = useSelector(userSelector);
     const dispatch = useDispatch();
@@ -24,6 +20,11 @@ const ProfileScreen = props => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.emailContainer}>
+                <Text style={styles.emailText}>
+                    {user.displayName}
+                </Text>
+            </View>
             <View style={styles.emailContainer}>
                 <Text style={styles.emailText}>
                     {user.email}
