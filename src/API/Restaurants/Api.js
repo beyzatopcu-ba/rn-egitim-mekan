@@ -22,6 +22,4 @@ const searchRestaurantsByCityAndCategory = async (cityId, categoryId) => {
     return result;
 };
 
-export default {
-    searchRestaurantsByCityAndCategory,
-};
+export default searchRestaurantsByCityAndCategory;
