@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import AuthScreenUI from './AuthScreenUI';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { lastUserEmailSelector, signUpRequest, signInRequest } from '../../Redux/UserRedux';
+import { lastUserEmailSelector, signUpRequest, signInRequest, errorSelector } from '../../Redux/UserRedux';
 
 const AuthScreen = props => {
 
     const lastUserEmail = useSelector(lastUserEmailSelector);
+    const errorMessage = useSelector(errorSelector);
 
     const [email, setEmail] = useState(lastUserEmail);
     const [password, setPassword] = useState('');
@@ -37,8 +38,7 @@ const AuthScreen = props => {
             onChangeText_PasswordConfirm={setPasswordConfirm}
             onPress_SignUp={onPress_SignUp}
             onPress_SignIn={onPress_SignIn}
-            loading={props.loading}
-            error={props.error}
+            error={errorMessage}
         />
     );
 

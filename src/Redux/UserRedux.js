@@ -5,17 +5,20 @@ import { setIsLoadingAC } from "./LoadingRedux";
 const INITIAL_STATE = {
     user: null,
     lastUserEmail: '',
+    error: '',
 };
 
 // Selectors
 export const userSelector = state => state.userState.user;
 export const lastUserEmailSelector = state => state.userState.lastUserEmail;
+export const errorSelector = state => state.userState.error;
 
 // Action Types
 export const SIGN_UP_REQUEST = "user/sign_up_request";
 export const SIGN_OUT_REQUEST = "user/sign_out_request";
 export const SIGN_IN_REQUEST = "user/sign_in_request";
 export const SET_USER = "user/set_user";
+export const SET_ERROR = "user/set_error";
 
 // Action Creators
 export const signUpRequest = (email, password, displayName) => {
@@ -52,6 +55,13 @@ export const setUserAC = (user) => {
     };
 }
 
+export const setErrorAC = (errorMessage) => {
+    return {
+        type: SET_ERROR,
+        payload: { errorMessage }
+    }
+}
+
 // Reducer
 export const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -61,7 +71,14 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 user: newUser,
                 lastUserEmail,
+                error: '',
             }
+        case SET_ERROR:
+            const errorMessage = action.payload.errorMessage;
+            return {
+                ...state,
+                error: errorMessage,
+            };
         default:
             return state;
     }

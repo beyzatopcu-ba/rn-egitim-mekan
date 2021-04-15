@@ -58,6 +58,7 @@ const AuthScreen = props => {
                                 </View>
                         }
                     </View>
+                    <Text>{props.error}</Text>
                     <View style={styles.buttonsContainer}>
                         <AuthButton
                             onPress={isLogin ? props.onPress_SignIn : props.onPress_SignUp}
