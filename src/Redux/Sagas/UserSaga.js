@@ -1,4 +1,4 @@
-import { fork, takeEvery, call, put, all } from "@redux-saga/core/effects";
+import { fork, takeEvery, call, put, all, spawn } from "@redux-saga/core/effects";
 import { setErrorAC, setUserAC, SIGN_IN_REQUEST, SIGN_OUT_REQUEST, SIGN_UP_REQUEST } from '../UserRedux';
 import { getCurrentUser, signIn, signOut, signUp, updateUser } from '../../API/Firebase';
 import { setIsLoadingAC } from "../LoadingRedux";
@@ -25,6 +25,8 @@ function* workerSignIn(action) {
         const currentUser = getCurrentUser();
         yield put(setUserAC(currentUser));
 
+        // yield spawn(call(sendReport));
+
     } catch (error) {
         yield put(setErrorAC(error.message));
     } finally {
@@ -37,15 +39,19 @@ function* watchSignInRequest() {
 }
 
 function* signUpAndUpdateUser(email, password, displayName) {
-    // Önce signUp yaptırdık
-    yield call(signUp, email, password);
-    // Sonra kullanıcı adını Firebase'de güncelledik
-    yield call(updateUser, displayName);
+    try {
+        // Önce signUp yaptırdık
+        yield fork(call(signUp, email, password));
+        // Sonra kullanıcı adını Firebase'de güncelledik
+        yield call(updateUser, displayName);
 
-    // Şu anki kullanıcı bilgisini Firebase'den aldık
-    const currentUser = getCurrentUser();
-    // Şu anki kullanıcıyı redux'a verdik
-    yield put(setUserAC(currentUser));
+        // Şu anki kullanıcı bilgisini Firebase'den aldık
+        const currentUser = getCurrentUser();
+        // Şu anki kullanıcıyı redux'a verdik
+        yield put(setUserAC(currentUser));
+    } catch(error) {
+        
+    }
 }
 
 function* workerSignUp(action) {
