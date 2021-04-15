@@ -11,6 +11,8 @@ import CitySelectionModal from './Components/CitySelectionModal';
 import getCategories from '../../API/Categories/ApiRequests';
 
 import styles from './Styles/HomeScreenStyles';
+import { useSelector } from 'react-redux';
+import { categoryListSelector } from '../../Redux/CategoryRedux';
 
 const dummyCategories = [
     {
@@ -178,22 +180,12 @@ const dummyCategories = [
 const HomeScreen = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [categories, setCategories] = useState([]);
     const [selectedCity, setSelectedCity] = useState({
         id: 59,
         name: "İstanbul",
     })
 
-    useEffect(() => {
-        // Kategorileri iste
-        getCategories()
-            .then(categoryList => {
-                setCategories(categoryList);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }, []);
+    const categories = useSelector(categoryListSelector);
 
     const _onPress_GoToRestaurants = () => {
         props.navigation.navigate("restaurants-screen");

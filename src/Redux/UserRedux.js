@@ -14,6 +14,7 @@ export const lastUserEmailSelector = state => state.userState.lastUserEmail;
 // Action Types
 export const SIGN_UP_REQUEST = "user/sign_up_request";
 export const SIGN_OUT_REQUEST = "user/sign_out_request";
+export const SIGN_IN_REQUEST = "user/sign_in_request";
 export const SET_USER = "user/set_user";
 
 // Action Creators
@@ -31,6 +32,16 @@ export const signUpRequest = (email, password, displayName) => {
 export const signOutRequest = () => {
     return {
         type: SIGN_OUT_REQUEST,
+    };
+}
+
+export const signInRequest = (email, password) => {
+    return {
+        type: SIGN_IN_REQUEST,
+        payload: {
+            email,
+            password,
+        },
     };
 }
 

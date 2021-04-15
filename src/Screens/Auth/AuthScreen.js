@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import AuthScreenUI from './AuthScreenUI';
-import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {signIn, signUp} from "../../API/Firebase";
-import { lastUserEmailSelector, signUpRequest } from '../../Redux/UserRedux';
-import { setIsLoadingAC } from '../../Redux/LoadingRedux';
+import { lastUserEmailSelector, signUpRequest, signInRequest } from '../../Redux/UserRedux';
 
 const AuthScreen = props => {
 
@@ -27,14 +24,7 @@ const AuthScreen = props => {
     }
 
     const onPress_SignIn = () => {
-        console.log('onPress_SignIn')
-        // ***************************************** //
-        ////// AŞAĞIYA dispatch YAZMAYI UNUTMUŞUM //////
-        // ***************************************** //
         dispatch(signInRequest(email, password));
-        // ***************************************** //
-        ////// YUKARIYA dispatch YAZMAYI UNUTMUŞUM //////
-        // ***************************************** //
     }
 
     return (

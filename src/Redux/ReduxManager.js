@@ -7,17 +7,19 @@ import rootSaga from './Sagas/RootSaga';
 import { userReducer } from './UserRedux';
 import { loadingReducer } from './LoadingRedux';
 import { noteReducer } from './NoteRedux';
+import { categoryReducer } from './CategoryRedux';
 
 const rootReducer = combineReducers({
     userState: userReducer,
     loading: loadingReducer,
     notes: noteReducer,
+    category: categoryReducer,
 });
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['userState', 'notes'],
+    whitelist: ['userState', 'notes', 'category'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

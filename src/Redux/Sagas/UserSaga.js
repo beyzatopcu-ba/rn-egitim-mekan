@@ -1,7 +1,36 @@
 import { fork, takeEvery, call, put } from "@redux-saga/core/effects";
-import { setUserAC, SIGN_OUT_REQUEST, SIGN_UP_REQUEST } from '../UserRedux';
-import { getCurrentUser, signOut, signUp, updateUser } from '../../API/Firebase';
+import { setUserAC, SIGN_IN_REQUEST, SIGN_OUT_REQUEST, SIGN_UP_REQUEST } from '../UserRedux';
+import { getCurrentUser, signIn, signOut, signUp, updateUser } from '../../API/Firebase';
 import { setIsLoadingAC } from "../LoadingRedux";
+import getCategories from "../../API/Categories/ApiRequests";
+import { setCategoriesAC } from "../CategoryRedux";
+
+function* workerSignIn(action) {
+    const {email, password} = action.payload;
+
+    try {
+
+        yield put(setIsLoadingAC(true));  
+
+        yield call(signIn, email, password);
+        const currentUser = getCurrentUser();
+
+        const categoryList = yield call(getCategories);
+        yield put(setCategoriesAC(categoryList));
+        
+        yield put(setUserAC(currentUser));
+
+
+        yield put(setIsLoadingAC(false));
+
+    } catch (error) {
+        console.log('ERROR', error);
+    }
+}
+
+function* watchSignInRequest() {
+    yield takeEvery(SIGN_IN_REQUEST, workerSignIn);
+}
 
 function* workerSignUp(action) {
 
@@ -22,6 +51,9 @@ function* workerSignUp(action) {
         const currentUser = getCurrentUser();
         // Şu anki kullanıcıyı redux'a verdik
         yield put(setUserAC(currentUser));
+
+        const categoryList = yield call(getCategories);
+        yield put(setCategoriesAC(categoryList));
 
         yield put(setIsLoadingAC(false));
 
@@ -59,6 +91,7 @@ function* watchSignOutRequest() {
 const userSagas = [
     fork(watchSignUpRequest),
     fork(watchSignOutRequest),
+    fork(watchSignInRequest),
 ];
 
 export default userSagas;
