@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity, Keyboard} from 'react-native';
 import OkayButton from '../Components/OkayButton';
 
 import SearchBar from '../../../Components/SearchBar';
@@ -28,6 +28,7 @@ const CitySelectionModal = props => {
     const [cityList, setCityList] = useState([]);
 
     const _onPress_Search = () => {
+        Keyboard.dismiss()
         /*
         getCategories()
             .then(categoryList => {
@@ -46,7 +47,9 @@ const CitySelectionModal = props => {
 
     const _renderCityItem = ({item}) => {
         return (
-            <Text style={styles.cityNameText}>{item.name}</Text>
+            <TouchableOpacity onPress={() => props.onPress_CityItem(item)}>
+                <Text>{item.name}</Text>
+            </TouchableOpacity>
         )
     }
 

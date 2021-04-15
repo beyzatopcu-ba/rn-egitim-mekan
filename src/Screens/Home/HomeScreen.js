@@ -180,10 +180,7 @@ const dummyCategories = [
 const HomeScreen = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [selectedCity, setSelectedCity] = useState({
-        id: 59,
-        name: "İstanbul",
-    })
+    const [selectedCity, setSelectedCity] = useState(null)
 
     const categories = useSelector(categoryListSelector);
 
@@ -209,6 +206,11 @@ const HomeScreen = props => {
             category: categoryItem,
         });
         // ******************
+    }
+
+    const _onPress_CityItem = (city) => {
+        setIsModalVisible(false);
+        setSelectedCity(city);
     }
 
     const _renderCategoryItem = ({item}) => {
@@ -269,7 +271,7 @@ const HomeScreen = props => {
                 // kapanış animasyonu
                 animationOut="fadeOut"
             >
-                <CitySelectionModal />
+                <CitySelectionModal onPress_CityItem={_onPress_CityItem} />
             </Modal>
         </>
     )
