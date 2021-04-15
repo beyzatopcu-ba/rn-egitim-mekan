@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 
-import styles from '../Styles/CategoryItemStyles';
+import getStyles from '../Styles/CategoryItemStyles';
 
 const CategoryItem = props => {
+    const styles = getStyles(props.disabled);
     return (
         <TouchableOpacity
             onPress={props.onPress}
