@@ -1,11 +1,14 @@
-import React from 'react';
-import { Image, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { Images } from '../../../Constants';
+import HeartEmpty from '../../../Assets/Svgs/heart-empty.svg';
+import HeartFilled from '../../../Assets/Svgs/heart-filled.svg';
 
 import styles from '../Styles/RestaurantItemStyles';
 
 const RestaurantItem = props => {
     const { restaurant } = props;
+    const [ isLiked, setIsLiked ] = useState(false);
     
     let imageSource = restaurant.imageURL !== '' ?
         {uri: restaurant.imageURL} : Images.defaultRestaurantImage;
@@ -27,9 +30,14 @@ const RestaurantItem = props => {
                     style={styles.cuisinesText}>{restaurant.cuisines}</Text>
             </View>
             <View style={styles.rightContainer}>
-                <View>
-                    <Text>o</Text>
-                </View>
+                <TouchableOpacity style={styles.heartIconContainer} onPress={() => setIsLiked(!isLiked)}>
+                    {
+                        isLiked ?
+                        <HeartFilled width="100%" height="100%" style={styles.heartFilledIcon}/>
+                        :
+                        <HeartEmpty width="100%" height="100%" style={styles.heartEmptyIcon}/>
+                    }
+                </TouchableOpacity>
                 <Text style={styles.ratingText}>{restaurant.rating}</Text>
             </View>
         </View>

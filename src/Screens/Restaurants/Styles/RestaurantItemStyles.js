@@ -21,6 +21,7 @@ export default StyleSheet.create({
     },
     rightContainer: {
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     image: {
         width: '100%',
@@ -48,4 +49,15 @@ export default StyleSheet.create({
         fontSize: Fonts.Sizes.sixteen,
         color: Colors.mainColor,
     },
+    heartIconContainer: {
+        width: Metrics.width * 0.06,
+        height: undefined,
+        aspectRatio: 1,
+    },
+    heartEmptyIcon: {
+        color: Colors.grey,
+    },
+    heartFilledIcon: {
+        color: Colors.mainColor,
+    }
 });
