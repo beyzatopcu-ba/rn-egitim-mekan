@@ -6,8 +6,10 @@ const RestaurantsScreen = props => {
     const { category, city } = props.route.params;
 
     useEffect(() => {
-        
-    })
+        props.navigation.setOptions({
+            title: category.name,
+        });
+    }, []);
 
     return (
         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
